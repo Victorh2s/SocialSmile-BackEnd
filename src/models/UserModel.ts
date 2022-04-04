@@ -30,18 +30,8 @@ User.init(
       unique: true,
       validate: {
         len: {
-          args: [3, 7],
+          args: [3, 12],
           msg: 'User name field must be between 3 and 6 characters long',
-        },
-      },
-    },
-    name: {
-      type: DataTypes.STRING,
-      defaultValue: '',
-      validate: {
-        len: {
-          args: [3, 8],
-          msg: 'Name field must have between 3 and 8 characters',
         },
       },
     },
@@ -71,6 +61,7 @@ User.init(
   },
   {
     sequelize,
-    freezeTableName: true,
+    timestamps: true,
+    modelName: 'user',
   },
 );
