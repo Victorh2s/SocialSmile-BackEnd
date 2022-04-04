@@ -7,6 +7,7 @@ export class Profile
   implements ProfileAttributes
 {
   id!: number;
+  profileId!: number;
   bio!: string;
   name!: string;
   // static associate(models: any) {
@@ -24,6 +25,7 @@ Profile.init(
       primaryKey: true,
       allowNull: false,
     },
+    profileId: DataTypes.INTEGER,
     bio: {
       type: DataTypes.STRING,
       defaultValue: '',

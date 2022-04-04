@@ -1,5 +1,8 @@
 export interface PostsAttributes {
   id: number;
-  content: string;
+  postId: number;
   title: string;
+  content: string;
+  filename: string;
+  url: string;
 }

@@ -1,13 +1,15 @@
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../config/db';
-import { PostsAttributes } from '../interfaces/PostsProtocol';
+import { PictureAttributes } from '../interfaces/PictureProtocol';
 import appConfig from '../config/url';
 
-export class Posts extends Model<PostsAttributes> implements PostsAttributes {
+export class Picture
+  extends Model<PictureAttributes>
+  implements PictureAttributes
+{
   id!: number;
-  postId!: number;
-  title!: string;
-  content!: string;
+  pictureId!: number;
+  originalname!: string;
   filename!: string;
   url!: string;
 
@@ -18,7 +20,7 @@ export class Posts extends Model<PostsAttributes> implements PostsAttributes {
   // }
 }
 
-Posts.init(
+Picture.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -26,18 +28,8 @@ Posts.init(
       primaryKey: true,
       allowNull: false,
     },
-    postId: DataTypes.INTEGER,
-    title: {
-      type: DataTypes.STRING,
-      defaultValue: '',
-      validate: {
-        len: {
-          args: [0, 80],
-          msg: 'Your title must be up to 100 characters',
-        },
-      },
-    },
-    content: {
+    pictureId: DataTypes.INTEGER,
+    originalname: {
       type: DataTypes.STRING,
       defaultValue: '',
       validate: {
@@ -64,6 +56,6 @@ Posts.init(
   },
   {
     sequelize,
-    modelName: 'posts',
+    modelName: 'pictures',
   },
 );
