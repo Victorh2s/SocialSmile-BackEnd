@@ -1,12 +1,7 @@
-// import Sequelize from 'sequelize';
-// import { db } from '../config/db';
-// import { UserModel } from '../models/UserModel';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { sequelize } from '../config/db';
 
-// const models = [UserModel];
+const models: any[] = [];
 
-// const connection = new Sequelize(db);
-
-// models.forEach((model) => model.init(connection));
-// models.forEach(
-//   (model) => model.associate && model.associate(connection.models),
-// );
+models.forEach((model) => model.init(sequelize));
+models.forEach((model) => model.associate && model.associate(sequelize.models));
