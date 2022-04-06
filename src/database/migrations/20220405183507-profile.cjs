@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  async up(queryInterface: any, Sequelize: any): Promise<void> {
+  async up(queryInterface, Sequelize) {
     return queryInterface.createTable('profiles', {
       id: {
         type: Sequelize.DataTypes.INTEGER,
@@ -9,18 +9,9 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
-      profileId: {
+      UprofileId: {
         type: Sequelize.DataTypes.INTEGER,
         allowNull: false,
-        references: {
-          model: {
-            tableName: 'profile',
-            schema: 'schema',
-          },
-          key: 'id',
-        },
-        onDelete: 'SET NULL',
-        onUpdate: 'CASCADE',
       },
       bio: {
         type: Sequelize.DataTypes.STRING,
@@ -30,10 +21,18 @@ module.exports = {
         type: Sequelize.DataTypes.STRING,
         allowNull: false,
       },
+      created_at: {
+        type: Sequelize.DataTypes.DATE,
+        allowNull: false,
+      },
+      updated_at: {
+        type: Sequelize.DataTypes.DATE,
+        allowNull: false,
+      },
     });
   },
 
-  async down(queryInterface: any): Promise<void> {
+  async down(queryInterface) {
     return queryInterface.dropTable('profiles');
   },
 };

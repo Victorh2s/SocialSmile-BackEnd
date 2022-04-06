@@ -8,7 +8,7 @@ export class Picture
   implements PictureAttributes
 {
   id!: number;
-  pictureId!: number;
+  UpictureId!: number;
   originalname!: string;
   filename!: string;
   url!: string;
@@ -28,7 +28,7 @@ Picture.init(
       primaryKey: true,
       allowNull: false,
     },
-    pictureId: DataTypes.INTEGER,
+    UpictureId: DataTypes.INTEGER,
     originalname: {
       type: DataTypes.STRING,
       defaultValue: '',

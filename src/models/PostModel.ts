@@ -5,7 +5,7 @@ import appConfig from '../config/url';
 
 export class Posts extends Model<PostsAttributes> implements PostsAttributes {
   id!: number;
-  postId!: number;
+  UpostsId!: number;
   title!: string;
   content!: string;
   filename!: string;
@@ -26,7 +26,7 @@ Posts.init(
       primaryKey: true,
       allowNull: false,
     },
-    postId: DataTypes.INTEGER,
+    UpostsId: DataTypes.INTEGER,
     title: {
       type: DataTypes.STRING,
       defaultValue: '',

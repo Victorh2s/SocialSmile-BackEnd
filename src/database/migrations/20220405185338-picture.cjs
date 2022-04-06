@@ -1,38 +1,37 @@
 'use strict';
 
 module.exports = {
-  async up(queryInterface: any, Sequelize: any): Promise<void> {
-    return queryInterface.createTable('picture ', {
+  async up(queryInterface, Sequelize) {
+    return queryInterface.createTable('picture', {
       id: {
         type: Sequelize.DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      pictureId: {
+      UpictureId: {
         type: Sequelize.DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-          model: {
-            tableName: 'pictures',
-            schema: 'schema',
-          },
-          key: 'id',
-        },
-        onDelete: 'SET NULL',
-        onUpdate: 'CASCADE',
-      },
-      originalname: {
-        type: Sequelize.DataTypes.STRING,
         allowNull: false,
       },
       filename: {
         type: Sequelize.DataTypes.STRING,
         allowNull: false,
       },
+      originalname: {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false,
+      },
+      created_at: {
+        type: Sequelize.DataTypes.DATE,
+        allowNull: false,
+      },
+      updated_at: {
+        type: Sequelize.DataTypes.DATE,
+        allowNull: false,
+      },
     });
   },
-  async down(queryInterface: any) {
+  async down(queryInterface) {
     return queryInterface.dropTable('picture');
   },
 };

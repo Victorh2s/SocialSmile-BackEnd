@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../config/db';
 import { UserAttributes } from '../interfaces/UserProtocol';
@@ -12,11 +13,31 @@ export class User extends Model<UserAttributes> implements UserAttributes {
   static Profile: any;
   static Picture: any;
   static Posts: any;
-  // static associate(models: any) {
-  //   User.belongsToMany(models.Project, {
-  //     through: 'ProjectAssignments',
-  //   });
-  // }
+  static associate(models: any) {
+    User.hasOne(models.Profile, {
+      foreignKey: 'UprofileId',
+      constraints: false,
+      onDelete: 'SET NULL',
+      onUpdate: 'CASCADE',
+    });
+    models.Profile.belongsTo(User);
+
+    User.hasMany(models.Posts, {
+      foreignKey: 'UpostsId',
+      constraints: false,
+      onDelete: 'SET NULL',
+      onUpdate: 'CASCADE',
+    });
+    models.Posts.belongsTo(User);
+
+    User.hasOne(models.Picture, {
+      foreignKey: 'UpictureId',
+      constraints: false,
+      onDelete: 'SET NULL',
+      onUpdate: 'CASCADE',
+    });
+    models.Picture.belongsTo(User);
+  }
 }
 
 User.init(
