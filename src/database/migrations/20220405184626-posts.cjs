@@ -4,33 +4,33 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     return queryInterface.createTable('posts', {
       id: {
-        type: Sequelize.DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
       UpostsId: {
-        type: Sequelize.DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
       title: {
-        type: Sequelize.DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       content: {
-        type: Sequelize.DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       filename: {
-        type: Sequelize.DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       },
-      created_at: {
-        type: Sequelize.DataTypes.DATE,
+      createdAt: {
+        type: Sequelize.DATE,
         allowNull: false,
       },
-      updated_at: {
-        type: Sequelize.DataTypes.DATE,
+      updatedAt: {
+        type: Sequelize.DATE,
         allowNull: false,
       },
     });

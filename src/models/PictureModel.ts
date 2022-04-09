@@ -1,61 +1,56 @@
-import { DataTypes, Model } from 'sequelize';
-import { sequelize } from '../config/db';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+'use strict';
+import { Model } from 'sequelize';
 import { PictureAttributes } from '../interfaces/PictureProtocol';
 import appConfig from '../config/url';
 
-export class Picture
-  extends Model<PictureAttributes>
-  implements PictureAttributes
-{
-  id!: number;
-  UpictureId!: number;
-  originalname!: string;
-  filename!: string;
-  url!: string;
+module.exports = (sequelize: any, DataTypes: any) => {
+  class Picture extends Model<PictureAttributes> implements PictureAttributes {
+    declare UpictureId: number;
+    declare originalname: string;
+    declare filename: string;
+    declare url: string;
+    public readonly createdAt!: Date;
+    public readonly updatedAt!: Date;
 
-  // static associate(models: any) {
-  //   User.belongsToMany(models.Project, {
-  //     through: 'ProjectAssignments',
-  //   });
-  // }
-}
+    // static associate(models: any) {
+    //   User.belongsToMany(models.Project, {
+    //     through: 'ProjectAssignments',
+    //   });
+    // }
+  }
 
-Picture.init(
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-      allowNull: false,
-    },
-    UpictureId: DataTypes.INTEGER,
-    originalname: {
-      type: DataTypes.STRING,
-      defaultValue: '',
-      validate: {
-        notEmpty: {
-          msg: 'The field cannot be empty',
+  Picture.init(
+    {
+      UpictureId: DataTypes.INTEGER,
+      originalname: {
+        type: DataTypes.STRING,
+        defaultValue: '',
+        validate: {
+          notEmpty: {
+            msg: 'The field cannot be empty',
+          },
+        },
+      },
+      filename: {
+        type: DataTypes.STRING,
+        defaultValue: '',
+        validate: {
+          notEmpty: {
+            msg: 'The field cannot be empty',
+          },
+        },
+      },
+      url: {
+        type: DataTypes.VIRTUAL,
+        get() {
+          return `${appConfig.url}/images/${this.getDataValue('filename')}`;
         },
       },
     },
-    filename: {
-      type: DataTypes.STRING,
-      defaultValue: '',
-      validate: {
-        notEmpty: {
-          msg: 'The field cannot be empty',
-        },
-      },
+    {
+      sequelize,
+      modelName: 'pictures',
     },
-    url: {
-      type: DataTypes.VIRTUAL,
-      get() {
-        return `${appConfig.url}/images/${this.getDataValue('filename')}`;
-      },
-    },
-  },
-  {
-    sequelize,
-    modelName: 'pictures',
-  },
-);
+  );
+};

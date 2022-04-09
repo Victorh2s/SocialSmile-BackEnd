@@ -1,18 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+'use strict';
+
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../config/db';
 import { UserAttributes } from '../interfaces/UserProtocol';
+import bcrypt from 'bcrypt';
 
-export class User extends Model<UserAttributes> implements UserAttributes {
-  username!: string;
-
-  id!: number;
-  name!: string;
-  email!: string;
-  password!: string;
+class User extends Model<UserAttributes> implements UserAttributes {
+  declare username: string;
+  declare id: number;
+  declare name: string;
+  declare email: string;
+  declare password: string;
   static Profile: any;
   static Picture: any;
   static Posts: any;
+
   static associate(models: any) {
     User.hasOne(models.Profile, {
       foreignKey: 'UprofileId',
@@ -50,6 +53,7 @@ User.init(
     },
     username: {
       type: DataTypes.STRING,
+      defaultValue: '',
       allowNull: false,
       unique: true,
       validate: {
@@ -85,7 +89,16 @@ User.init(
   },
   {
     sequelize,
-    timestamps: true,
     modelName: 'user',
+    hooks: {
+      beforeCreate: async (user) => {
+        if (user.password) {
+          const salt = await bcrypt.genSaltSync(10, 'a');
+          user.password = bcrypt.hashSync(user.password, salt);
+        }
+      },
+    },
   },
 );
+
+export default User;

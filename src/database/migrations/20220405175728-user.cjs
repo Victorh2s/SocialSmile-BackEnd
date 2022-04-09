@@ -4,29 +4,31 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     return queryInterface.createTable('users', {
       id: {
-        type: Sequelize.DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
       username: {
-        type: Sequelize.DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
+        unique: true,
       },
       email: {
-        type: Sequelize.DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
+        unique: true,
       },
       password: {
-        type: Sequelize.DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       },
-      created_at: {
-        type: Sequelize.DataTypes.DATE,
+      createdAt: {
+        type: Sequelize.DATE,
         allowNull: false,
       },
-      updated_at: {
-        type: Sequelize.DataTypes.DATE,
+      updatedAt: {
+        type: Sequelize.DATE,
         allowNull: false,
       },
     });

@@ -4,29 +4,29 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     return queryInterface.createTable('picture', {
       id: {
-        type: Sequelize.DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
       UpictureId: {
-        type: Sequelize.DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
       filename: {
-        type: Sequelize.DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       originalname: {
-        type: Sequelize.DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       },
-      created_at: {
-        type: Sequelize.DataTypes.DATE,
+      createdAt: {
+        type: Sequelize.DATE,
         allowNull: false,
       },
-      updated_at: {
-        type: Sequelize.DataTypes.DATE,
+      updatedAt: {
+        type: Sequelize.DATE,
         allowNull: false,
       },
     });
