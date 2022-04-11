@@ -1,5 +1,5 @@
 export interface ProfileAttributes {
-  UprofileId: number;
+  uprofileid: number;
   bio: string;
   name: string;
 }

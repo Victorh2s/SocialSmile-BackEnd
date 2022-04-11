@@ -1,5 +1,5 @@
 export interface PostsAttributes {
-  UpostsId: number;
+  upostsid: number;
   title: string;
   content: string;
   filename: string;

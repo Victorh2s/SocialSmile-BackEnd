@@ -9,9 +9,14 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
-      UprofileId: {
-        type: Sequelize.INTEGER,
+      uprofileid: {
         allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'users',
+          key: 'id',
+        },
+        onDelete: 'cascade',
       },
       bio: {
         type: Sequelize.STRING,

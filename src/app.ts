@@ -11,6 +11,7 @@ import cors from 'cors';
 import delay from 'express-delay-header';
 import HomeRoutes from './routes/HomeRoutes';
 import UserRoutes from './routes/UserRoutes';
+import ProfileRoutes from './routes/ProfileRoutes';
 
 class App implements AppProtocol {
   constructor() {
@@ -31,6 +32,7 @@ class App implements AppProtocol {
     this.app.use(cors());
     this.app.use('/', HomeRoutes);
     this.app.use('/users', UserRoutes);
+    this.app.use('/users/profile', ProfileRoutes);
   }
 }
 

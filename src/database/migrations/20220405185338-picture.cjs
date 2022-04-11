@@ -2,16 +2,21 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    return queryInterface.createTable('picture', {
+    return queryInterface.createTable('pictures', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      UpictureId: {
-        type: Sequelize.INTEGER,
+      upictureid: {
         allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'users',
+          key: 'id',
+        },
+        onDelete: 'cascade',
       },
       filename: {
         type: Sequelize.STRING,
@@ -32,6 +37,6 @@ module.exports = {
     });
   },
   async down(queryInterface) {
-    return queryInterface.dropTable('picture');
+    return queryInterface.dropTable('pictures');
   },
 };

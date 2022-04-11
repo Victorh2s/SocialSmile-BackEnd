@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use strict';
-
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../config/db';
 import { UserAttributes } from '../interfaces/UserProtocol';
 import bcrypt from 'bcrypt';
+import Profile from './ProfileModel';
+import Posts from './PostModel';
+import Picture from './PictureModel';
 
 class User extends Model<UserAttributes> implements UserAttributes {
   declare username: string;
@@ -17,29 +19,12 @@ class User extends Model<UserAttributes> implements UserAttributes {
   static Posts: any;
 
   static associate(models: any) {
-    User.hasOne(models.Profile, {
-      foreignKey: 'UprofileId',
-      constraints: false,
-      onDelete: 'SET NULL',
-      onUpdate: 'CASCADE',
-    });
-    models.Profile.belongsTo(User);
-
-    User.hasMany(models.Posts, {
-      foreignKey: 'UpostsId',
-      constraints: false,
-      onDelete: 'SET NULL',
-      onUpdate: 'CASCADE',
-    });
-    models.Posts.belongsTo(User);
-
     User.hasOne(models.Picture, {
-      foreignKey: 'UpictureId',
-      constraints: false,
+      foreignKey: 'upictureid',
+      constraints: true,
       onDelete: 'SET NULL',
       onUpdate: 'CASCADE',
     });
-    models.Picture.belongsTo(User);
   }
 }
 
@@ -89,7 +74,7 @@ User.init(
   },
   {
     sequelize,
-    modelName: 'user',
+    modelName: 'users',
     hooks: {
       beforeCreate: async (user) => {
         if (user.password) {
@@ -100,5 +85,45 @@ User.init(
     },
   },
 );
+User.hasOne(Profile, {
+  foreignKey: 'uprofileid',
+  onDelete: 'SET NULL',
+  onUpdate: 'CASCADE',
+});
+
+Profile.belongsTo(User, {
+  foreignKey: 'uprofileid',
+  constraints: true,
+  onDelete: 'SET NULL',
+  onUpdate: 'CASCADE',
+});
+
+User.hasMany(Posts, {
+  foreignKey: 'upostsid',
+  constraints: true,
+  onDelete: 'SET NULL',
+  onUpdate: 'CASCADE',
+});
+
+Posts.belongsTo(User, {
+  foreignKey: 'upostsid',
+  constraints: true,
+  onDelete: 'SET NULL',
+  onUpdate: 'CASCADE',
+});
+
+User.hasOne(Picture, {
+  foreignKey: 'upictureid',
+  constraints: true,
+  onDelete: 'SET NULL',
+  onUpdate: 'CASCADE',
+});
+
+Picture.belongsTo(User, {
+  foreignKey: 'upictureid',
+  constraints: true,
+  onDelete: 'SET NULL',
+  onUpdate: 'CASCADE',
+});
 
 export default User;

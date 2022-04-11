@@ -9,9 +9,14 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
-      UpostsId: {
-        type: Sequelize.INTEGER,
+      upostsid: {
         allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'users',
+          key: 'id',
+        },
+        onDelete: 'cascade',
       },
       title: {
         type: Sequelize.STRING,

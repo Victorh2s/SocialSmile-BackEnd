@@ -1,5 +1,5 @@
 export interface PictureAttributes {
-  UpictureId: number;
+  upictureid: number;
   originalname: string;
   filename: string;
   url: string;
