@@ -4,8 +4,8 @@ import ProfileController from '../controllers/ProfileController';
 
 const router = new (Router as any)();
 
-router.get('/', ProfileController.index);
 router.post('/', ProfileController.store);
+router.get('/:id', ProfileController.index);
 router.put('/:id', ProfileController.update);
 
 export default router;

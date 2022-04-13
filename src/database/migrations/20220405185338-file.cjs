@@ -2,14 +2,14 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    return queryInterface.createTable('posts', {
+    return queryInterface.createTable('files', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      upostsid: {
+      ufilesid: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
@@ -18,11 +18,11 @@ module.exports = {
         },
         onDelete: 'cascade',
       },
-      title: {
+      filename: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      description: {
+      originalname: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -37,6 +37,6 @@ module.exports = {
     });
   },
   async down(queryInterface) {
-    return queryInterface.dropTable('posts');
+    return queryInterface.dropTable('files');
   },
 };

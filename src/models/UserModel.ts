@@ -9,9 +9,8 @@ import Posts from './PostModel';
 import Picture from './PictureModel';
 
 class User extends Model<UserAttributes> implements UserAttributes {
-  declare username: string;
   declare id: number;
-  declare name: string;
+  declare username: string;
   declare email: string;
   declare password: string;
   static Profile: any;
@@ -112,7 +111,7 @@ Posts.belongsTo(User, {
   onUpdate: 'CASCADE',
 });
 
-User.hasOne(Picture, {
+User.hasMany(Picture, {
   foreignKey: 'upictureid',
   constraints: true,
   onDelete: 'SET NULL',

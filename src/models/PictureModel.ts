@@ -10,8 +10,8 @@ class Picture extends Model<PictureAttributes> implements PictureAttributes {
   declare originalname: string;
   declare filename: string;
   declare url: string;
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
+  declare readonly createdAt: Date;
+  declare readonly updatedAt: Date;
 }
 
 Picture.init(

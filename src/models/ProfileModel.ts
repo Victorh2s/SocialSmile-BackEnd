@@ -8,8 +8,8 @@ class Profile extends Model<ProfileAttributes> implements ProfileAttributes {
   declare uprofileid: number;
   declare bio: string;
   declare name: string;
-  public readonly createdAt!: Date;
-  public readonly updatedAt!: Date;
+  readonly createdAt!: Date;
+  readonly updatedAt!: Date;
   // static associate(models: any) {
   //   this.belongsTo(models.User, {
   //     foreignKey: 'uprofileid',
@@ -30,8 +30,8 @@ Profile.init(
       defaultValue: '',
       validate: {
         len: {
-          args: [0, 100],
-          msg: 'Your bio must be up to 35 characters',
+          args: [0, 200],
+          msg: 'Your bio must be up to 20 characters',
         },
       },
     },
@@ -41,7 +41,7 @@ Profile.init(
       validate: {
         len: {
           args: [0, 16],
-          msg: 'Your bio must be up to 10 characters',
+          msg: 'Your bio must be up to 16 characters',
         },
       },
     },
