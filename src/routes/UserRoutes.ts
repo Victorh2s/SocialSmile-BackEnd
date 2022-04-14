@@ -3,7 +3,7 @@ import { Router } from 'express';
 import UserController from '../controllers/UserController';
 
 const router = new (Router as any)();
-
+//TODOS AQUI DEVEM TER O MIDDLEWARRE
 router.get('/', UserController.show);
 router.get('/:id', UserController.index);
 router.post('/', UserController.store);
