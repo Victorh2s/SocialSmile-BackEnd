@@ -14,6 +14,7 @@ import UserRoutes from './routes/UserRoutes';
 import ProfileRoutes from './routes/ProfileRoutes';
 import PicturesRoutes from './routes/PicturesRoutes';
 import PostsRoutes from './routes/PostsRoutes';
+import TokenRoutes from './routes/TokenRoutes';
 
 class App implements AppProtocol {
   constructor() {
@@ -37,6 +38,7 @@ class App implements AppProtocol {
     this.app.use('/profile', ProfileRoutes);
     this.app.use('/picture', PicturesRoutes);
     this.app.use('/post', PostsRoutes);
+    this.app.use('/tokens', TokenRoutes);
   }
 }
 

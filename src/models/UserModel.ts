@@ -25,6 +25,9 @@ class User extends Model<UserAttributes> implements UserAttributes {
       onUpdate: 'CASCADE',
     });
   }
+  passwordIsValid(password: string) {
+    return bcrypt.compare(password, this.password);
+  }
 }
 
 User.init(
@@ -84,6 +87,7 @@ User.init(
     },
   },
 );
+
 User.hasOne(Profile, {
   foreignKey: 'uprofileid',
   onDelete: 'SET NULL',
