@@ -32,8 +32,8 @@ export default async (req: Request, res: Response, next: NextFunction) => {
       });
     }
 
-    req.userId = id;
-    req.userEmail = email;
+    const userId = id;
+    const userEmail = email;
 
     return next();
   } catch (e) {

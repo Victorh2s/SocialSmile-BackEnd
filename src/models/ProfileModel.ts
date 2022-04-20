@@ -8,8 +8,8 @@ class Profile extends Model<ProfileAttributes> implements ProfileAttributes {
   declare uprofileid: number;
   declare bio: string;
   declare name: string;
-  readonly createdAt!: Date;
-  readonly updatedAt!: Date;
+  declare readonly createdAt: Date;
+  declare readonly updatedAt: Date;
   // static associate(models: any) {
   //   this.belongsTo(models.User, {
   //     foreignKey: 'uprofileid',

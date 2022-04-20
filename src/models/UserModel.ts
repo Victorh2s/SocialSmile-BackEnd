@@ -115,7 +115,7 @@ Posts.belongsTo(User, {
   onUpdate: 'CASCADE',
 });
 
-User.hasMany(Picture, {
+User.hasOne(Picture, {
   foreignKey: 'upictureid',
   constraints: true,
   onDelete: 'SET NULL',

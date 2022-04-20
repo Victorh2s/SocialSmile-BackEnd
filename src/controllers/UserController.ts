@@ -8,6 +8,7 @@ import Picture from '../models/PictureModel';
 class UserController {
   async show(req: Request, res: Response) {
     const user = await UserModel.findAll({
+      attributes: ['id', 'username'],
       include: [{ model: Profile }, { model: Posts }, { model: Picture }],
     });
     return res.json(user);
@@ -16,6 +17,7 @@ class UserController {
   async index(req: Request, res: Response) {
     try {
       const userId = await UserModel.findByPk(req.params.id, {
+        attributes: ['id', 'username'],
         include: [{ model: Profile }, { model: Posts }, { model: Picture }],
       });
       if (!userId)

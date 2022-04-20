@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 import PictureModel from '../models/PictureModel';
 import { uploadAvatar } from '../config/multerConfig';
 
-const upload = multer(uploadAvatar.getConfig).single('fileup');
+const upload = multer(uploadAvatar.getConfig).single('imageprofile');
 
 class PictureController {
   async index(req: Request, res: Response) {
