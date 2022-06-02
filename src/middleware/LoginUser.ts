@@ -9,7 +9,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
 
   if (!authorization) {
     return res.status(401).json({
-      errors: ['Você precisa fazer login'],
+      errors: ['You need to login'],
     });
   }
 
@@ -26,9 +26,9 @@ export default async (req: Request, res: Response, next: NextFunction) => {
       },
     });
 
-    if (!user) {
+    if (user) {
       return res.status(401).json({
-        errors: ['Usuário inválido'],
+        errors: ['Invalid User'],
       });
     }
 

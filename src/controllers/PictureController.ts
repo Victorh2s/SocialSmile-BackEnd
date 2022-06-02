@@ -52,7 +52,7 @@ class PictureController {
           return res.json(pictures);
         }
       } catch (e: any) {
-        return res.status(400).json('Não é um tipo de arquivo válido');
+        return res.status(400).json('Not a valid file type');
       }
     });
   }
